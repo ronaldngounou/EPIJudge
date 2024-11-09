@@ -1,9 +1,34 @@
 from test_framework import generic_test
-
+import math 
 
 def is_palindrome_number(x: int) -> bool:
-    # TODO - you fill in here.
-    return True
+    """
+    Iteratively compare the most significant and least significant digits and remove them from the output.
+    
+    TC: O(N)
+    SC: O(1)
+    """
+    if x == 0:
+        return True 
+    elif x < 0:
+        return False 
+    
+    num_digits = math.floor(math.log10(x)) + 1 
+    print(f"number of digits of {x} is {num_digits}")
+    msd_mask = 10**(num_digits - 1)
+    for i in range(num_digits // 2):
+        if x // msd_mask != x % 10:
+            return False 
+        
+        x %= msd_mask # remove the most significant digit of x
+        x //= 10 #remove the least significant digit of x
+
+        msd_mask //= 100 
+    
+    return True 
+
+    
+
 
 
 if __name__ == '__main__':
