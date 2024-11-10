@@ -222,7 +222,7 @@ problem_mapping = {
                 "total": 1000
             },
             "Python: int_as_array_multiply.py": {
-                "passed": 0,
+                "passed": 1000,
                 "total": 1000
             }
         },
@@ -250,7 +250,7 @@ problem_mapping = {
                 "total": 2003
             },
             "Python: sorted_array_remove_dups.py": {
-                "passed": 0,
+                "passed": 2003,
                 "total": 2003
             }
         },
