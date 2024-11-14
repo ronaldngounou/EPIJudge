@@ -9,8 +9,43 @@ from test_framework.test_utils import enable_executor_hook
 
 
 def solve_sudoku(partial_assignment: List[List[int]]) -> bool:
-    # TODO - you fill in here.
+    for row in range(9):
+        for col in range(9):
+            if partial_assignment[row][col] == 0:
+                for num in range(1, 10):
+                    if is_valid(partial_assignment, row, col, num):
+                        partial_assignment[row][col] = num 
+                        
+                        if solve_sudoku(partial_assignment):
+                            return True
+
+                        partial_assignment[row][col] = 0 #Backtrack
+                
+                return False # Return False to trigger backtracking
     return True
+                    
+
+
+
+def is_valid(board, row, col, num):
+    # Check if num is in the row 
+    if num in board[row]:
+        return False
+
+    # Check if num is in the col 
+    for i in range(9):
+        if board[i][col] == num:
+            return False 
+
+    # Check if num is the 3x3 box
+    start_row, start_col = (row // 3) * 3, (col // 3) * 3 
+    for i in range(3):
+        for j in range(3):
+            if board[start_row + i][start_col + j] == num:
+                return False 
+    
+    return True 
+
 
 
 def assert_unique_seq(seq):
