@@ -1,23 +1,35 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
+from typing import List
 
-
+class ElementWIthCacheMax:
+    def __init__(self, element, max):
+        self.max = max
+        self.element = element
 class Stack:
+    def __init__(self):
+        self.element_with_cache_max: List[ElementWIthCacheMax] = []
+
     def empty(self) -> bool:
-        # TODO - you fill in here.
-        return True
+        return len(self.element_with_cache_max) == 0
 
     def max(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        return self.element_with_cache_max[-1].max 
 
     def pop(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        return self.element_with_cache_max.pop().element 
 
     def push(self, x: int) -> None:
-        # TODO - you fill in here.
-        return
+        # Determine the new maximum value to cache
+        if self.empty():
+            new_max = x 
+        else:
+            # Take the maximum of the current element and the current max
+            new_max = max(x, self.max())
+        
+        new_element = ElementWIthCacheMax(x, new_max)
+
+        self.element_with_cache_max.append(new_element)
 
 
 def stack_tester(ops):
