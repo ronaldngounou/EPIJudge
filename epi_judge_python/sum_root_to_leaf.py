@@ -29,8 +29,8 @@ def sum_root_to_leaf_rec(node: BinaryTreeNode, partial_path_sum) -> int:
         + sum_root_to_leaf_rec(node.right, partial_path_sum)
 
 def is_leaf(node):
-    return node.left is None and node.right is None 
-        #not node.left and not node.right
+    #return node.left is None and node.right is None 
+    return not node.left and not node.right
 
 
 if __name__ == '__main__':
